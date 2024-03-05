@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="center">
+      <p-image src="https://firmaenlinea.ec/assets/img/clients/client-7.png" alt="Image" width="250"></p-image>
+    </div>
+  </div>
+
+<div class="card flex justify-content-center">
+    <div>
+    <h2>1.- Ingrese la cédula de la persona a firmar</h2>
+    </div>
+    <div class="flex flex-column gap-2">
+        <label for="username">Cédula</label>
+        <input pInputText id="cedula" aria-describedby="username-help" [(ngModel)]="cedula" />
+        <small id="username-help">Ingrese el número de cédula sin el "-".</small>
+    </div>
+</div>
+<p-divider></p-divider>
+<div class="card flex justify-content-center">
+    <div>
+        <h2>2.- Cargue los documentos a ser firmados</h2>
+    </div>
+    <p-fileUpload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php" uploadLabel="Firmar" (onUpload)="onUpload($event)"  [multiple]="true" accept=".pdf" [maxFileSize]="5250000">
+    </p-fileUpload>
+</div>
+<p-divider></p-divider>
+<div class="card flex justify-content-center">
+    <div>
+        <h2>3.- Descargue los documentos firmados</h2>
+    </div>
+    <p-button class="p-button-success" label="Descargar Documento" [disabled]="!botonHabilitado" (onClick)="descargar()"></p-button>
+</div>
+

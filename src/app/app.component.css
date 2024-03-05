@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+  }
+  
+  /* Personalizar el color del texto de los p-card */
+  p-card {
+    color: #333;
+  }
+  
+  /* Estilos para el navbar */
+  .navbar {
+    border-radius: 0;
+  }
+  
+  .navbar-brand {
+    font-weight: bold;
+  }
+  
+  /* Estilos para el contenedor principal */
+  .container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
