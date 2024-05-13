@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { FileUploadEvent } from 'primeng/fileupload';
 import { ReplaySubject } from 'rxjs';
-import { UploadService } from '../upload.service';
+import { UploadService } from '../services/upload.service';
 import { Mintel } from '../models/mintel';
 import { Documentos } from '../models/documentos';
 import { Resnombres } from '../models/resnombres';

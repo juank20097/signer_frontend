@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders } from '@angular/common/http'
-import { Mintel } from './models/mintel';
-import { Resnombres } from './models/resnombres';
+import { Mintel } from '../models/mintel';
+import { Resnombres } from '../models/resnombres';
 import { Observable } from 'rxjs';
 
 @Injectable({

@@ -1,11 +1,11 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadComponent } from './upload/upload.component';
 import { FileUploadModule } from 'primeng/fileupload';
-import { UploadService } from './upload.service';
+import { UploadService } from './services/upload.service';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
@@ -16,6 +16,24 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { DividerModule } from 'primeng/divider';
 
+function initializeKeycloak(keycloak: KeycloakService) {
+  return () =>
+    keycloak.init({
+      config: {
+        url: 'http://localhost:8081',
+        realm: 'FirmaEc',
+        clientId: 'firmaec_app'
+      },
+      initOptions: {
+        onLoad: 'check-sso',
+        silentCheckSsoRedirectUri:
+          window.location.origin + '/assets/verify-sso.html'
+      }
+    });
+}
+      
+    
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +42,7 @@ import { DividerModule } from 'primeng/divider';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    KeycloakAngularModule,
     FileUploadModule,
     FormsModule,
     InputTextModule,
@@ -35,7 +54,14 @@ import { DividerModule } from 'primeng/divider';
     AvatarGroupModule,
     DividerModule
   ],
-  providers: [UploadService],
+  providers: [UploadService,
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeKeycloak,
+      multi: true,
+      deps: [KeycloakService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
