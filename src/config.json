@@ -1,0 +1,7 @@
+{
+    "clientID": "wfZ5poHY38IfKrH60Rjkhsx7c68a",
+    "baseUrl": "https://localhost:9443",
+    "signInRedirectURL": "https://localhost:4200/upload",
+    "signOutRedirectURL": "https://localhost:4200",
+    "scope": [ "profile" ]
+}

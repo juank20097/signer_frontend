@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { OAuthModule } from 'angular-oauth2-oidc';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UploadComponent } from './upload/upload.component';
 import { FileUploadModule } from 'primeng/fileupload';
-import { UploadService } from './upload.service';
+import { UploadService } from './services/upload/upload.service';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { CardModule } from 'primeng/card';
@@ -23,6 +23,7 @@ import { DividerModule } from 'primeng/divider';
   ],
   imports: [
     BrowserModule,
+    OAuthModule.forRoot(),
     AppRoutingModule,
     FileUploadModule,
     FormsModule,
@@ -33,7 +34,7 @@ import { DividerModule } from 'primeng/divider';
     ImageModule,
     AvatarModule,
     AvatarGroupModule,
-    DividerModule
+    DividerModule,
   ],
   providers: [UploadService],
   bootstrap: [AppComponent]

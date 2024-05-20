@@ -2,17 +2,16 @@ import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { FileUploadEvent } from 'primeng/fileupload';
 import { ReplaySubject } from 'rxjs';
-import { UploadService } from '../upload.service';
+import { UploadService } from '../services/upload/upload.service';
 import { Mintel } from '../models/mintel';
 import { Documentos } from '../models/documentos';
 import { Resnombres } from '../models/resnombres';
+import { AuthService } from '../services/auth/auth.service'; // Importa tu AuthService
 
 interface UploadEvent {
   originalEvent: Event;
   files: File[];
 }
-
-
 
 @Component({
   selector: 'app-upload',
@@ -32,7 +31,12 @@ export class UploadComponent {
   botonHabilitado: boolean = false;
   cedula: String= "";
 
-  constructor(private messageService: MessageService,private service:UploadService) {}
+  constructor(private messageService: MessageService,private service:UploadService,private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.authService.isAuthenticated();
+    console.log(this.authService.fetchUserInfo());
+  }
 
   onUpload(event:FileUploadEvent) {
       this.pdftobase64(event);
@@ -74,8 +78,6 @@ export class UploadComponent {
     });
   }
   
-  
-
   habilitarBoton(): void {
     this.botonHabilitado = true;
   }
