@@ -21,7 +21,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
     keycloak.init({
       config: {
         url: 'http://localhost:8081',
-        realm: 'FirmaEc',
+        realm: 'firmaec',
         clientId: 'firmaec_app'
       },
       initOptions: {
