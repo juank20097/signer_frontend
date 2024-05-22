@@ -8,19 +8,20 @@ import { KeycloakProfile, KeycloakRoles } from 'keycloak-js';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public isLogueado = false;
+ username: string = "";
+
+  public Logueado = false;
 		  public perfilUsuario: KeycloakProfile | null = null;
-		 
+		  
 		  constructor(private readonly keycloak: KeycloakService) {}
-
+		 
 		  public async ngOnInit() {
-
-		    this.isLogueado = await this.keycloak.isLoggedIn();
-
+		    this.Logueado = await this.keycloak.isLoggedIn();
 		    type rolesUsuarios = Array<{id: number, text: string}>;
-
-		    if (this.isLogueado) {
-		      this.perfilUsuario = await this.keycloak.loadUserProfile();
+		    if (this.Logueado) {
+		      	this.keycloak.loadUserProfile().then(userProfile => {
+				this.username = userProfile.firstName + ' '+userProfile.lastName || ''; 
+			  });
 		    }
 		  }
 

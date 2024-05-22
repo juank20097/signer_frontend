@@ -15,25 +15,19 @@ import { ImageModule } from 'primeng/image';
 import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { DividerModule } from 'primeng/divider';
+import keycloakConfig from './keycloak/keycloak.conf';
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
     keycloak.init({
-      config: {
-        url: 'http://localhost:8081',
-        realm: 'firmaec',
-        clientId: 'firmaec_app'
-      },
+      config: keycloakConfig,
       initOptions: {
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri:
-          window.location.origin + '/assets/verify-sso.html'
+        onLoad: 'check-sso', // Other options: 'check-sso', 'login-required'
+        checkLoginIframe: false
       }
     });
 }
       
-    
-
 @NgModule({
   declarations: [
     AppComponent,

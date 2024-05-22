@@ -32,6 +32,10 @@ export class UploadComponent {
   botonHabilitado: boolean = false;
   cedula: String= "";
 
+  Oninit(){
+
+  }
+
   constructor(private messageService: MessageService,private service:UploadService) {}
 
   onUpload(event:FileUploadEvent) {
