@@ -5,7 +5,6 @@ WORKDIR /usr/src/app
 # Copiar el package.json y el package-lock en nuestro WORKDIR
 COPY package*.json ./
 # Instalar dependencias
-
 RUN npm config set strict-ssl false
 
 RUN npm install
